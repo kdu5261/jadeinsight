@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>제이드인사이트 | 개인사업자 전문경영컨설팅</title>
+    <style>
+        /* 토스(Toss) 스타일의 디자인 시스템 정의 */
+        :root {
+            --toss-blue: #3182f6;
+            --toss-blue-dark: #1b64da;
+            --toss-gray-100: #f2f4f6;
+            --toss-gray-200: #e5e8eb;
+            --toss-gray-600: #6b7684;
+            --toss-gray-700: #4e5968;
+            --toss-gray-900: #191f28;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+            background-color: var(--white);
+            color: var(--toss-gray-900);
+            line-height: 1.5;
+            word-break: keep-all;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+            background-color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* [NAVBAR] */
+        .navbar {
+            padding: 16px 24px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--toss-gray-100);
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            color: var(--toss-gray-900);
+            line-height: 1;
+        }
+
+        .logo-sub {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--toss-blue);
+            letter-spacing: -0.2px;
+        }
+
+        /* [HERO SECTION] */
+        .hero {
+            position: relative;
+            height: 75vh;
+            min-height: 550px;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url("https://iili.io/fOwUtFs.png");
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 24px;
+        }
+
+        .hero-content {
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero-headline {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.45;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+        }
+
+        .hero-headline span {
+            color: #7ab2ff;
+        }
+
+        .hero-subline {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 40px;
+            text-shadow: 0 1px 12px rgba(0,0,0,0.6);
+            letter-spacing: -0.2px;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--toss-blue);
+            color: var(--white);
+            padding: 20px 44px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+            box-shadow: 0 10px 30px rgba(49, 130, 246, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); box-shadow: 0 12px 35px rgba(49, 130, 246, 0.5); }
+            100% { transform: scale(1); }
+        }
+
+        /* [FORM SECTION] */
+        .form-section {
+            padding: 48px 24px 80px 24px;
+            background-color: var(--white);
+        }
+
+        .form-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 32px 24px;
+            border: 1px solid var(--toss-gray-100);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            margin-top: -120px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 28px;
+            color: var(--toss-gray-900);
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--toss-gray-700);
+            margin-bottom: 10px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            border: 1px solid var(--toss-gray-200);
+            border-radius: 14px;
+            background-color: var(--toss-gray-100);
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border-color: var(--toss-blue);
+            background-color: var(--white);
+            box-shadow: 0 0 0 3px rgba(49, 130, 246, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .radio-item { flex: 1; }
+        .radio-item input { display: none; }
+        .radio-label {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            background-color: var(--toss-gray-100);
+            border: 1px solid transparent;
+            border-radius: 14px;
+            font-size: 15px;
+            cursor: pointer;
+            color: var(--toss-gray-700);
+            transition: all 0.2s;
+        }
+        .radio-item input:checked + .radio-label {
+            background-color: var(--white);
+            border-color: var(--toss-blue);
+            color: var(--toss-blue);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(49, 130, 246, 0.1);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 22px;
+            background-color: var(--toss-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 18px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .submit-button:hover {
+            background-color: var(--toss-blue-dark);
+        }
+
+        /* [PROCESS SECTION] */
+        .process-section {
+            padding: 80px 24px;
+            background-color: var(--toss-gray-100);
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .process-header h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--toss-gray-900);
+            margin-bottom: 12px;
+        }
+
+        .process-header p {
+            color: var(--toss-gray-600);
+            font-size: 16px;
+        }
+
+        .process-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .process-item {
+            background: var(--white);
+            padding: 32px 24px;
+            border-radius: 24px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .process-number {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--toss-blue);
+            background: rgba(49, 130, 246, 0.1);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .process-content h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--toss-gray-900);
+        }
+
+        .process-content p {
+            font-size: 15px;
+            color: var(--toss-gray-700);
+            line-height: 1.6;
+        }
+
+        /* [TRUST SECTION] */
+        .trust-section {
+            padding: 80px 24px;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .trust-badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .trust-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .trust-icon {
+            font-size: 40px;
+        }
+
+        .trust-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--toss-gray-700);
+        }
+
+        /* [FOOTER] */
+        footer {
+            padding: 60px 24px;
+            background-color: var(--white); /* 하얀색 배경으로 수정 */
+            border-top: 1px solid var(--toss-gray-200);
+            color: var(--toss-gray-600);
+            font-size: 13px;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            color: var(--toss-gray-700);
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .footer-info {
+            line-height: 2;
+        }
+
+        @media (min-width: 721px) {
+            .hero-headline { font-size: 42px; }
+            .hero-subline { font-size: 19px; }
+            .trust-badge-container { gap: 60px; }
+        }
+
+        #statusModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 40px 32px;
+            border-radius: 32px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar">
+        <div class="logo-wrapper">
+            <div class="logo">JADE INSIGHT</div>
+            <div class="logo-sub">개인사업자 전문경영컨설팅</div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-headline">사장님의 <span>자금 고민</span>,<br>혼자 짊어지지 마세요</h1>
+            <p class="hero-subline">정책자금부터 경영난 해소까지, 개인사업자와 소상공인의 어려움을 가장 잘 아는<br>전문 컨설턴트 그룹이 1:1로 밀착하여 끝까지 해결해 드립니다</p>
+            <a href="#form-card" class="cta-button">내 사업장 맞춤 솔루션 확인</a>
+        </div>
+    </header>
+
+    <section class="form-section">
+        <div class="form-card" id="form-card">
+            <h2 class="form-title">무료 정밀 진단 신청</h2>
+            <form id="leadForm">
+                <div class="form-group">
+                    <label class="form-label" for="company_name">상호명</label>
+                    <input type="text" id="company_name" name="company_name" class="input-field" placeholder="사업장 이름을 입력해 주세요" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="industry">업종</label>
+                    <input type="text" id="industry" name="industry" class="input-field" placeholder="예시: 음식점, 도소매, 제조업 등" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">연평균 매출액</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="rev1" name="revenue" value="1억 미만" checked>
+                            <label for="rev1" class="radio-label">1억 미만</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="rev2" name="revenue" value="1억 이상">
+                            <label for="rev2" class="radio-label">1억 이상</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="location">사업장 소재지</label>
+                    <input type="text" id="location" name="location" class="input-field" placeholder="예시: 서울시 영등포구" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="person_name">신청인 성함</label>
+                    <input type="text" id="person_name" name="person_name" class="input-field" placeholder="성함을 입력해 주세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="phone">연락처</label>
+                    <input type="tel" id="phone" name="phone" class="input-field" placeholder="010-0000-0000" required>
+                </div>
+
+                <button type="submit" class="submit-button" id="submitBtn">1:1 맞춤 상담 예약하기</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- [단계별 프로세스 섹션] -->
+    <section class="process-section">
+        <div class="process-header">
+            <h3>해결을 위한 3단계 프로세스</h3>
+            <p>제이드인사이트가 제안하는 확실한 성공 경로</p>
+        </div>
+        
+        <div class="process-list">
+            <div class="process-item">
+                <div class="process-number">01</div>
+                <div class="process-content">
+                    <h4>데이터 기반 정밀 분석</h4>
+                    <p>사업장 정보를 토대로 현재 재무 상태와 수혜 가능한 정부 지원금 및 정책 자금을 1:1로 정밀 진단합니다.</p>
+                </div>
+            </div>
+
+            <div class="process-item">
+                <div class="process-number">02</div>
+                <div class="process-content">
+                    <h4>맞춤형 해결 전략 수립</h4>
+                    <p>단순 자금 확보를 넘어 경영난의 근본 원인을 파악하고 최적의 금리와 조건의 자금을 매칭하는 전략을 설계합니다.</p>
+                </div>
+            </div>
+
+            <div class="process-item">
+                <div class="process-number">03</div>
+                <div class="process-content">
+                    <h4>실행 및 승인 밀착 지원</h4>
+                    <p>복잡한 서류 준비부터 심사 대응까지 전 과정을 동행하여 사장님이 원하시는 결과를 얻을 때까지 책임집니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- [신뢰 배지 섹션] -->
+    <section class="trust-section">
+        <h3 style="font-size: 22px; font-weight: 700; color: var(--toss-gray-900);">믿고 맡길 수 있는 든든한 파트너</h3>
+        <p style="margin-top: 12px; color: var(--toss-gray-700); font-size: 16px;">사장님의 진솔한 고민, 제이드인사이트가 함께 해결합니다.</p>
+        <div class="trust-badge-container">
+            <div class="trust-badge">
+                <span class="trust-icon">🛡️</span>
+                <span class="trust-text">철저한 비밀 유지</span>
+            </div>
+            <div class="trust-badge">
+                <span class="trust-icon">🤝</span>
+                <span class="trust-text">1:1 맞춤 상담</span>
+            </div>
+            <div class="trust-badge">
+                <span class="trust-icon">📈</span>
+                <span class="trust-text">최적 승인 전략</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-logo">JADE INSIGHT</span>
+        <div class="footer-info">
+            <div>상호 : 제이드인사이트 | 대표 : 전인수</div>
+            <div>등록번호 : 393-15-02277</div>
+            <div>주소 : 서울특별시 영등포구 문래북로 8, 12층</div>
+            <div>대표번호 : 02-2138-1392</div>
+        </div>
+        <p style="margin-top:32px; opacity:0.6; border-top: 1px solid var(--toss-gray-100); padding-top: 24px;">© 2026 JADE INSIGHT. All rights reserved.</p>
+    </footer>
+</div>
+
+<div id="statusModal">
+    <div class="modal-content">
+        <div style="font-size:20px; font-weight:700; margin-bottom:12px;">상담 예약 접수 완료!</div>
+        <p>사장님의 소중한 신청이 접수되었습니다.<br>전문 컨설턴트가 확인 후 신속히 연락드리겠습니다.</p>
+        <button style="margin-top:24px; padding:12px 24px; background:var(--toss-blue); color:white; border:none; border-radius:12px; cursor:pointer;" onclick="location.reload()">확인</button>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.cta-button').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('#form-card').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    const form = document.getElementById('leadForm');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerText = "접수 중...";
+        await new Promise(r => setTimeout(r, 1200));
+        document.getElementById('statusModal').style.display = 'flex';
+    });
+</script>
+
+</body>
+</html>
